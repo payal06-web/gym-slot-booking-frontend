@@ -17,7 +17,7 @@ const Slot = () => {
       setLoading(true);
 
       const res = await api.get("/slots");
-      setSlots(res.data);
+      setSlots(res.data.slots || []);
 
       const crowdData = {};
 
@@ -80,7 +80,7 @@ const Slot = () => {
         <p className="text-gray-400">Loading slots...</p>
       )}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {slots.map((s) => (
+        {Array.isArray(slots) && slots.map((s) => (
           <div
             key={s._id}
             className="p-5 bg-white/5 border border-yellow-500/20 rounded-2xl hover:scale-105 transition">
