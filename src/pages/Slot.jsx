@@ -13,27 +13,34 @@ const Slot = () => {
   }, []);
 
   const fetchSlots = async () => {
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const res = await api.get("/slots");
-      setSlots(res.data.slots || []);
+    const res = await api.get("/slots");
 
-      const crowdData = {};
+    console.log("API RESPONSE:", res.data); // 👈 IMPORTANT
 
-      for (const slot of res.data) {
-        const c = await api.get(`/bookings/crowd/${slot._id}`);
-        crowdData[slot._id] = c.data.level;
-      }
+    const slotsData = Array.isArray(res.data)
+      ? res.data
+      : res.data.slots || res.data.data || [];
 
-      setCrowd(crowdData);
+    setSlots(slotsData);
 
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
+    const crowdData = {};
+
+    for (const slot of slotsData) {
+      const c = await api.get(`/bookings/crowd/${slot._id}`);
+      crowdData[slot._id] = c.data.level;
     }
-  };
+
+    setCrowd(crowdData);
+
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const book = async (slotId) => {
     try {

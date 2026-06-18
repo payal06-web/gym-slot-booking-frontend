@@ -11,6 +11,7 @@ const Admin = () => {
     fetchData();
   }, []);
 
+  
   // Get Slots + Crowd (Fixed)
   const fetchData = async () => {
     try {
