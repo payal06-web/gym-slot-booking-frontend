@@ -11,8 +11,6 @@ const Admin = () => {
     fetchData();
   }, []);
 
-  
-  // Get Slots + Crowd (Fixed)
   const fetchData = async () => {
     try {
       const res = await api.get("/slots");
