@@ -13,7 +13,6 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
     try {
       setError("");
       console.log("Email :", email)
