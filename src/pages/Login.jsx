@@ -14,6 +14,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setError("");
+      console.log("Sending: ", { email, password });
       const res = await api.post("/auth/login", { email, password });
       login(res.data);
 
@@ -22,7 +23,7 @@ const Login = () => {
 
     } catch (err) {
       console.log("ERROR:", err.response?.data);
-      setError(err.response?.data?.msg || "Login failed");
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -42,11 +43,13 @@ const Login = () => {
         <input
           type="email"
           placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full p-3 mb-4 rounded bg-black border border-gray-600 focus:border-yellow-400 outline-none"
         />
         <input
           type="password"
+          value={password}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           className="w-full p-3 mb-4 rounded bg-black border border-gray-600 focus:border-yellow-400 outline-none"
