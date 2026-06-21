@@ -15,8 +15,8 @@ const Login = () => {
     e.preventDefault();
     try {
       setError("");
-      console.log("Email :", email)
-      console.log("Password:", password)
+      console.log("email :", email)
+      console.log("password:", password)
       const res = await api.post("/auth/login", { email, password });
       login(res.data);
 

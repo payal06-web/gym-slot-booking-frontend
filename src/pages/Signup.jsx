@@ -56,13 +56,13 @@ const Signup = () => {
         <input
           name="name"
           placeholder="Name"
-          value={name}
+          value={form.name}
           onChange={handleChange}
           className="w-full p-3 mb-4 rounded bg-black border border-gray-600 focus:border-yellow-400 outline-none"
         />
         <input
           name="email"
-          value={email}
+          value={form.email}
           placeholder="Email"
           onChange={handleChange}
           className="w-full p-3 mb-4 rounded bg-black border border-gray-600 focus:border-yellow-400 outline-none"
@@ -70,7 +70,7 @@ const Signup = () => {
         <input
           type="password"
           name="password"
-          value={password}
+          value={form.password}
           placeholder="Password"
           onChange={handleChange}
           className="w-full p-3 mb-4 rounded bg-black border border-gray-600 focus:border-yellow-400 outline-none"
