@@ -11,10 +11,13 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
     try {
       setError("");
-      console.log("Sending: ", { email, password });
+      console.log("Email :", email)
+      console.log("Password:", password)
       const res = await api.post("/auth/login", { email, password });
       login(res.data);
 
