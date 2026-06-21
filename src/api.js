@@ -5,22 +5,12 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  console.log("Token: ", token)
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user.token}`;
+  }
   return config;
 });
-
-// api.interceptors.request.use((config) => {
-//   const user = JSON.parse(localStorage.getItem("user"));
-
-//   if (user?.token) {
-//     config.headers.Authorization = `Bearer ${user.token}`;
-//   }
-//   return config;
-// });
 
 export default api;
